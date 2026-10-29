@@ -1,0 +1,35 @@
+class Solution {
+    public int findShortestSubArray(int[] nums) {
+        HashMap<Integer, Integer> frequency = new HashMap<>();
+        HashMap<Integer, Integer> first = new HashMap<>();
+        HashMap<Integer, Integer> last = new HashMap<>();
+
+        int degree = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+
+            frequency.put(num, frequency.getOrDefault(num, 0) + 1);
+
+            if (!first.containsKey(num)) {
+                first.put(num, i);
+            }
+
+            last.put(num, i);
+
+            degree = Math.max(degree, frequency.get(num));
+        }
+
+        int minLength = nums.length;
+
+        for (int num : frequency.keySet()) {
+            if (frequency.get(num) == degree) {
+                int length = last.get(num) - first.get(num) + 1;
+
+                minLength = Math.min(minLength, length);
+            }
+        }
+
+        return minLength;
+    }
+}

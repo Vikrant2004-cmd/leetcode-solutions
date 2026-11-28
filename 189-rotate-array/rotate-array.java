@@ -1,8 +1,9 @@
 class Solution {
     public void rotate(int[] nums, int k) { 
-        int i = 0 ; 
+       
         int n = nums.length ; 
-        k = k % n ; 
+        k = k%n ;
+        int i = 0 ; 
         int j = n-k-1;
         while(i<j){
             int temp = nums[i];
@@ -11,19 +12,8 @@ class Solution {
             i++;
             j--;
         }
-        i = n - k ; 
+        i = n-k ; 
         j = n-1;
-        while(i < j ){
-            int temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp ;
-            i++;
-            j--;
-
-
-        }
-        i = 0 ; 
-        j = n-1 ; 
         while(i<j){
             int temp = nums[i];
             nums[i] = nums[j];
@@ -31,10 +21,14 @@ class Solution {
             i++;
             j--;
         }
-          
+        i = 0 ; 
+        j = n-1;
+        while(i<j){
+            int temp = nums[i];
+            nums[i] = nums[j] ; 
+            nums[j] = temp ; 
+            i++;
+            j--;
+        }
     }
 }
-
-
-        
-        
